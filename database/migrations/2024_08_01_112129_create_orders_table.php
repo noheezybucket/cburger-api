@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('burger_id')->unsigned();
             $table->string('client_firstname');
             $table->string('client_lastname');
-            $table->string('client_phonenumber');
+            $table->string('client_phone');
             $table->string('client_address');
             $table->enum('status', ['En cours', 'Terminer', 'Annuler', 'Payer'])->default('En cours');
             $table->boolean('payed')->default(false);

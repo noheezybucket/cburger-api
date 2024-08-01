@@ -18,10 +18,10 @@ class OrderTableSeeder extends Seeder
             'client_firstname' => Str::random(10),
             'client_lastname' => Str::random(100),
             'client_address' => Str::random(100),
-            'client_phonenumber'=>'+221 776667788',
+            'client_phonenumber' => '+221 776667788',
             'status' => 'En cours',
-            'payed'=>true,
-            'burger_id'=>2
+            'payed' => true,
+            'burger_id' => 2
         ]);
     }
 }
