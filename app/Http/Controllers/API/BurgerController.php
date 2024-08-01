@@ -14,7 +14,7 @@ class BurgerController extends BaseController
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index()
     {
         $burgers = Burger::all();
 

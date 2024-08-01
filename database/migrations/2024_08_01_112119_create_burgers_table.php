@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('description');
             $table->string('price');
+            $table->enum('status', ['archived', 'published'])->default('published');
             $table->timestamps();
         });
     }

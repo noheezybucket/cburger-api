@@ -20,6 +20,8 @@ class BurgerResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'image' => $this->image,
+            'status' => $this->status,
+
             // 'created_at' => $this->created_at->format('d/m/Y'),
             // 'updated_at' => $this->updated_at->format('d/m/Y'),
         ];
