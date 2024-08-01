@@ -7,6 +7,7 @@ use App\Http\Resources\BurgerResource;
 use App\Models\Burger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BurgerController extends BaseController
 {
@@ -25,7 +26,21 @@ class BurgerController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        $burger = Burger::create($input);
+
+        return $this->sendResponse(new BurgerResource($burger), 'Burger created successfully.');
     }
 
     /**
@@ -33,7 +48,12 @@ class BurgerController extends BaseController
      */
     public function show(string $id)
     {
-        //
+        $burger = Burger::find($id);
+        if (is_null($burger)) {
+            return $this->sendError('Burger not found.');
+        }
+
+        return $this->sendResponse(new BurgerResource($burger), 'Burger fetched successfully');
     }
 
     /**
@@ -41,7 +61,27 @@ class BurgerController extends BaseController
      */
     public function update(Request $request, string $id)
     {
-        //
+        $burger = Burger::find($id);
+
+        if (is_null($burger)) {
+            return $this->sendError('Burger not found.');
+        }
+
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        $burger->update($input);
+
+        return $this->sendResponse(new BurgerResource($burger), 'Burger updated successfully.');
     }
 
     /**
@@ -49,6 +89,14 @@ class BurgerController extends BaseController
      */
     public function destroy(string $id)
     {
-        //
+        $burger = Burger::find($id);
+
+        if (is_null($burger)) {
+            return $this->sendError('Burger not found.');
+        }
+
+        $burger->delete();
+
+        return $this->sendResponse([], 'Burger deleted successfully.');
     }
 }

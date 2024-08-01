@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreign('burger_id')->references('id')->on('burgers')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreign('burger_id')->references('id')->on('burgers')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
