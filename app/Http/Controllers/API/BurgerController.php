@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BurgerController extends BaseController
 {
+
     /**
      * Display a listing of the resource.
      */

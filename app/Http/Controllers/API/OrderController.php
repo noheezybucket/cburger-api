@@ -16,7 +16,9 @@ class OrderController extends BaseController
      */
     public function index()
     {
-        $orders = Order::all();
+        // $orders = Order::all();
+        $orders = Order::with('burger')->get();
+
         return $this->sendResponse(OrderResource::collection($orders), 'Orders, fetched successfully. ');
     }
 
@@ -48,7 +50,8 @@ class OrderController extends BaseController
      */
     public function show(string $id)
     {
-        $order = Order::find($id);
+        // $order = Order::find($id);
+        $order = Order::with('burger')->findOrFail($id);
         if (is_null($order)) {
             return $this->sendError('Order not found.');
         }

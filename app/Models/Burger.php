@@ -11,7 +11,8 @@ class Burger extends Model
 
     protected $guarded = [];
 
-    public function orders(): HasMany {
+    public function orders()
+    {
         return  $this->hasMany(Order::class);
     }
 }

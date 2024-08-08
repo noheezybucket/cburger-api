@@ -22,6 +22,7 @@ class OrderResource extends JsonResource
             'client_address' => $this->client_address,
             'status' => $this->status,
             'payed' => $this->payed,
+            'burger' => new BurgerResource($this->whenLoaded('burger')),  // Add this line
             // 'created_at' => $this->created_at->format('d/m/Y'),
             // 'updated_at' => $this->updated_at->format('d/m/Y'),
 
