@@ -21,10 +21,10 @@ Route::get('/list-orders', [OrderController::class, 'index']);
 
 
 
-// Route::middleware('auth:sanctum')->group(function () {
-Route::apiResource('burgers', BurgerController::class);
-Route::apiResource('orders', OrderController::class);
-Route::get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('burgers', BurgerController::class);
+    Route::apiResource('orders', OrderController::class);
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
-// });

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
+use App\Mail\InvoiceEmail;
 use App\Models\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends BaseController
@@ -80,6 +82,16 @@ class OrderController extends BaseController
 
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        if ($request->status === "Terminer") {
+            Mail::to('seydinag023@gmail.com')->send(new InvoiceEmail([
+                'client_firstname' => $request->client_firstname,
+                'client_lastname' => $request->client_lasttname,
+                'status' => $request->status,
+                'burger' => "Burger Kat cheese",
+                'price' => 2000
+            ]));
         }
 
         $order->update($input);

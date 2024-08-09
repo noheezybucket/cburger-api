@@ -23,8 +23,8 @@ class OrderResource extends JsonResource
             'status' => $this->status,
             'payed' => $this->payed,
             'burger' => new BurgerResource($this->whenLoaded('burger')),  // Add this line
-            // 'created_at' => $this->created_at->format('d/m/Y'),
-            // 'updated_at' => $this->updated_at->format('d/m/Y'),
+            'created_at' => $this->created_at->format('d/m/Y à H:i:s'),
+            'updated_at' => $this->updated_at->format('d/m/Y à H:i:s'),
 
         ];
         // return parent::toArray($request);
